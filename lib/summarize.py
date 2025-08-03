@@ -69,6 +69,9 @@ class Section:
     title: str
     number: int
 
+    def __str__(self):
+        return f"{self.number} - {self.title}"
+
 
 @dataclass
 class Chapter:
@@ -121,7 +124,7 @@ def generate_book_summary(book: Book, make_pdf: bool = False, make_epub: bool = 
             f.write(summary)
 
         if chapter.section and chapter.section != encountered_section:
-            running_chapter_summaries += f"## Part: {chapter}\n"
+            running_chapter_summaries += f"## Part: {chapter.section}\n"
             encountered_section = chapter.section
 
         if chapter.section:
